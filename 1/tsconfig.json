@@ -1,0 +1,7 @@
+{
+    "extends": "@tsconfig/recommended/tsconfig.json",
+    "files" : ["app.ts"],
+    "compilerOptions": {
+        "outDir": "out",
+    }
+  }
