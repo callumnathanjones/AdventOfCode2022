@@ -1,7 +1,8 @@
 import * as fs from 'fs/promises';
 
 async function start() {
-    const rawStackData = (await fs.readFile('./input_start_stack.txt')).toString().split('\r\n');
+    const rawInputData = (await fs.readFile('./input.txt')).toString().split('\r\n\r\n');
+    const rawStackData = rawInputData[0].split('\r\n');
 
     const header = rawStackData.splice(rawStackData.length - 1, 1)[0];
     if (!header) {
@@ -20,7 +21,7 @@ async function start() {
         }
     }
     
-    const arrangeRegexResult = (await fs.readFile('./input_rearrangement.txt')).toString().matchAll(/move (\d*) from (\d*) to (\d*)/g);
+    const arrangeRegexResult = rawInputData[1].matchAll(/move (\d*) from (\d*) to (\d*)/g);
     for (let it = arrangeRegexResult.next(); it && it.done === false; it = arrangeRegexResult.next()) {
         const fromIndex = parseInt(it.value[2]) - 1;
         const fromArr = stacks[fromIndex];
@@ -31,7 +32,7 @@ async function start() {
             continue;
         }
 
-        // DEPRECATED - CrateMover 9000 (Part 1 (:)
+        // DEPRECATED - CrateMover 9000 (Part 1 🙂)
         // for (let i = 0; i < moveNum; i++) {
         //     if (stacks[fromIndex].length) {
         //         const popRes = stacks[fromIndex].pop();
