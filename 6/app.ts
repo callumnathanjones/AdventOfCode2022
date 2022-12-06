@@ -11,7 +11,7 @@ function createUniqueCharRegex(strLen : number) {
             }
         }
     }
-
+    
     return new RegExp(regexStr, 'g');
 }
 
@@ -19,10 +19,10 @@ async function start() {
     const input = (await fs.readFile('./input.txt')).toString();
 
     const regexP1 = createUniqueCharRegex(4);
-    console.log(`(Part 1) ${(input.matchAll(regexP1)?.next()?.value?.index || 0) + 4}`);
+    console.log(`(Part 1) ${(regexP1.exec(input)?.index || 0) + 4}`);
 
     const regexP2 = createUniqueCharRegex(14);
-    console.log(`(Part 2) ${(input.matchAll(regexP2)?.next()?.value?.index || 0) + 14}`);
+    console.log(`(Part 2) ${(regexP2.exec(input)?.index || 0) + 14}`);
 };
 
 start().catch(e => {
